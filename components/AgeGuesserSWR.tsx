@@ -1,14 +1,12 @@
 import React from 'react';
 import useSWR from 'swr';
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
-
 type Props = {
   name: string;
 };
 
 const AgeGuesserSWR = ({ name }: Props) => {
-  const { data, error } = useSWR(`https://api.agify.io/?name=${name}`, fetcher);
+  const { data, error } = useSWR(`https://api.agify.io/?name=${name}`);
 
   return (
     <div className="p-6 shadow-md rounded-2xl text-center">
