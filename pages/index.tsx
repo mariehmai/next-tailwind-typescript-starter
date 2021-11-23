@@ -28,7 +28,7 @@ const IndexPage = () => {
           </h1>
           <input
             className="w-full mt-8 px-4 py-2 rounded-md border-2 border-solid border-gray-300 dark:text-gray-800 dark:bg-white"
-            placeholder="Type a name... e.g. marie"
+            placeholder="Type a name and press Enter... e.g. marie"
             type="text"
             value={name}
             onChange={onNameChange}
