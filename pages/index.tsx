@@ -22,12 +22,12 @@ const IndexPage = () => {
   return (
     <Layout>
       <div className="flex flex-col items-center p-4">
-        <div className="mb-10 p-8 rounded-2xl border-gray-300 border-0 shadow-lg">
+        <div className="mb-10 p-8 rounded-2xl border-gray-300 border-0 shadow-lg dark:text-gray-800 dark:bg-white">
           <h1 className="text-2xl">
             Predict the age of a person based on their name.
           </h1>
           <input
-            className="w-full mt-8 px-4 py-2 rounded-md border-2 border-solid border-gray-300"
+            className="w-full mt-8 px-4 py-2 rounded-md border-2 border-solid border-gray-300 dark:text-gray-800 dark:bg-white"
             placeholder="Type a name... e.g. marie"
             type="text"
             value={name}
