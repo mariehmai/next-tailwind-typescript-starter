@@ -2,6 +2,7 @@ import { KeyboardEvent, useState } from 'react';
 
 import Layout from '../components/Layout';
 import AgeGuesserSWR from '../components/AgeGuesserSWR';
+import AgeGuesserRQ from '../components/AgeGuesserRQ';
 
 const IndexPage = () => {
   const [name, setName] = useState('');
@@ -34,7 +35,12 @@ const IndexPage = () => {
             onKeyDown={onNameKeyDown}
           />
         </div>
-        {show && <AgeGuesserSWR name={name} />}
+        {show && (
+          <div className="flex flex-row">
+            <AgeGuesserSWR name={name} />
+            <AgeGuesserRQ name={name} />
+          </div>
+        )}
       </div>
     </Layout>
   );
