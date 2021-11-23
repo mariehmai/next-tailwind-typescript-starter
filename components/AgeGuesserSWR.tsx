@@ -1,23 +1,23 @@
 import React from 'react';
 import useSWR from 'swr';
 
-const fetcher = (url) => fetch(url).then((res) => res.json());
-
 type Props = {
   name: string;
 };
 
 const AgeGuesserSWR = ({ name }: Props) => {
-  const { data, error } = useSWR(
-    `https://api.agify.io/?name=${name}`,
-    fetcher,
-    { fallbackData: { age: '...' } }
-  );
+  const { data, error } = useSWR(`https://api.agify.io/?name=${name}`, null, {
+    fallbackData: { age: '...' }
+  });
 
   return (
-    <div className="p-6 shadow-md rounded-2xl text-center">
+    <div className="p-6 shadow-md rounded-2xl text-center mr-6">
       <h2>Fetching with SWR</h2>
-      {error ? <p>Oops!</p> : <p className="text-8xl">{data?.age || '🤷🏻‍♀️'}</p>}
+      {error ? (
+        <p className="text-8xl">Oops!</p>
+      ) : (
+        <p className="text-8xl">{data?.age || '🤷🏻‍♀️'}</p>
+      )}
     </div>
   );
 };
