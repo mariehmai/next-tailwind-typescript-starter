@@ -8,7 +8,7 @@ type Props = {
   title?: string;
 };
 
-const Layout = ({ children, title = 'This is the default title' }: Props) => {
+const Layout = ({ children, title = 'Next.js app' }: Props) => {
   const [isMounted, setIsMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
@@ -23,34 +23,45 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
   };
 
   return (
-    <div>
+    <div className="h-full flex flex-col justify-between">
       <Head>
         <title>{title}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header>
-        <nav>
-          <Link href="/">
-            <a>Home</a>
-          </Link>{' '}
-          |{' '}
-          <Link href="/about">
-            <a>About</a>
-          </Link>{' '}
-          |{' '}
-          <Link href="/users">
-            <a>Users List</a>
-          </Link>{' '}
-          | <a href="/api/users">Users API</a>
-          <button onClick={switchTheme}>Change theme: {theme}</button>
+      <header className="flex flex-col m-4">
+        <nav className="flex flex-row justify-between items-baseline">
+          <span>
+            <Link href="/">
+              <a className="hover:opacity-80">Home</a>
+            </Link>{' '}
+            |{' '}
+            <Link href="/users">
+              <a>Users List</a>
+            </Link>{' '}
+            | <a href="/api/users">Users API</a>
+          </span>
+          <span className="flex justify-end ">
+            <button
+              className="flex items-center px-4 py-2 bg-gray-800 text-white font-bold rounded-md dark:bg-white dark:text-gray-800 drop-shadow-sm"
+              onClick={switchTheme}
+            >
+              Switch theme
+              <div
+                className={`h-4 w-4 ml-2 ${
+                  theme === 'dark' ? 'bg-gray-800' : 'bg-white'
+                }`}
+              ></div>
+            </button>
+          </span>
         </nav>
       </header>
       {children}
-      <footer>
-        <hr />
-        <span>I'm here to stay (Footer)</span>
+      <footer className="p-4 bg-gray-800 dark:bg-white text-center">
+        <span className="text-xs text-white dark:text-gray-800">
+          Next.js | Tailwind CSS
+        </span>
       </footer>
     </div>
   );
