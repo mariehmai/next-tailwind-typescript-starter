@@ -7,6 +7,10 @@ const getAge = async ({ queryKey }) => {
   return response.json();
 };
 
+export const useGetAge = (name) => {
+  return useQuery(name, getAge);
+};
+
 type Props = {
   name: string;
 };
@@ -21,7 +25,7 @@ const Wrapper = ({ children }) => (
 const AgeGuesserRQ = ({ name }: Props) => {
   useQueryClient();
 
-  const { data, isLoading, error } = useQuery(name, getAge);
+  const { data, isLoading, error } = useGetAge(name);
 
   if (isLoading) {
     return (

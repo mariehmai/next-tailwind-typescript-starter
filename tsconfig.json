@@ -16,5 +16,7 @@
     "incremental": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "postcss.config.js"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "setupFilesAfterEnv": ["<rootDir>/jest.setup.ts"],
+  "testPathIgnorePatterns": ["<rootDir>/.next/", "<rootDir>/node_modules/"]
 }
