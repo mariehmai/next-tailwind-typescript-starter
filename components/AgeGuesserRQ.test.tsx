@@ -1,7 +1,8 @@
 import React from 'react';
 import { useQuery, QueryClient, QueryClientProvider } from 'react-query';
 import { renderHook } from '@testing-library/react-hooks';
-import { render } from '@testing-library/react';
+import { render, cleanup } from '@testing-library/react';
+import { act } from 'react-test-renderer';
 
 import AgeGuesserRQ from './AgeGuesserRQ';
 
@@ -42,7 +43,6 @@ describe('AgeGuesserRQ component', () => {
     expect(getByText('...')).toBeVisible();
   });
 
-  // TODO: fix act() missing somewhere
   it('should return age found state', async () => {
     const wrapper = createWrapper();
 
@@ -50,16 +50,17 @@ describe('AgeGuesserRQ component', () => {
       wrapper
     });
 
-    await waitFor(() => result.current.isSuccess);
+    await act(async () => {
+      await waitFor(() => result.current.isSuccess);
+      const { getByText } = render(<AgeGuesserRQ name="marie" />, {
+        wrapper
+      });
 
-    const { getByText } = render(<AgeGuesserRQ name="marie" />, {
-      wrapper
+      expect(getByText('60')).toBeVisible();
+      cleanup();
     });
-
-    expect(getByText('60')).toBeVisible();
   });
 
-  // TODO: fix act() missing somewhere
   it('should return age not found state', async () => {
     const useGetAgeNotFound = () => {
       return useQuery('marie', () => ({
@@ -69,16 +70,19 @@ describe('AgeGuesserRQ component', () => {
 
     const wrapper = createWrapper();
 
-    const { result, waitFor } = renderHook(() => useGetAgeNotFound(), {
-      wrapper
+    await act(async () => {
+      const { result, waitFor } = renderHook(() => useGetAgeNotFound(), {
+        wrapper
+      });
+
+      await waitFor(() => result.current.isSuccess);
+
+      const { getByText } = render(<AgeGuesserRQ name="marie" />, {
+        wrapper
+      });
+
+      expect(getByText('🤷🏻‍♀️')).toBeVisible();
+      cleanup();
     });
-
-    await waitFor(() => result.current.isSuccess);
-
-    const { getByText } = render(<AgeGuesserRQ name="marie" />, {
-      wrapper
-    });
-
-    expect(getByText('🤷🏻‍♀️')).toBeVisible();
   });
 });
