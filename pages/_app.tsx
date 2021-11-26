@@ -15,7 +15,7 @@ const App = ({ Component, pageProps }: AppProps) => (
     }}
   >
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider attribute="class">
+      <ThemeProvider attribute="class" defaultTheme="light">
         <Component {...pageProps} />
       </ThemeProvider>
     </QueryClientProvider>

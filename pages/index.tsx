@@ -1,8 +1,10 @@
 import { KeyboardEvent, useState } from 'react';
+import dynamic from 'next/dynamic';
 
-import Layout from '../components/Layout';
 import AgeGuesserSWR from '../components/AgeGuesserSWR';
 import AgeGuesserRQ from '../components/AgeGuesserRQ';
+
+const Layout = dynamic(() => import('../components/Layout'), { ssr: false });
 
 const IndexPage = () => {
   const [name, setName] = useState('');
