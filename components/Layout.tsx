@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { useTheme } from 'next-themes';
 import { useSession, signIn, signOut } from 'next-auth/react';
+import { Switch } from '@headlessui/react';
 
 type Props = {
   children?: ReactNode;
@@ -60,6 +61,20 @@ const Layout = ({ children, title = 'Next.js app' }: Props) => {
               </Link>
             </span>
             <span className="flex flex-col md:flex-row justify-end md:items-center">
+              <Switch
+                checked={theme === 'dark'}
+                onChange={switchTheme}
+                className={`${
+                  theme === 'dark' ? 'bg-gray-900' : 'bg-gray-200'
+                } md:mr-2 relative inline-flex items-center h-6 rounded-full w-11`}
+              >
+                <span className="sr-only">Switch theme</span>
+                <span
+                  className={`${
+                    theme === 'dark' ? 'translate-x-6' : 'translate-x-1'
+                  } inline-block w-4 h-4 transform bg-white rounded-full`}
+                />
+              </Switch>
               <span>Signed in as {session.user?.name}</span>
               <button
                 className="md:mx-2 px-4 py-2 rounded-md border-gray-800 border-2 hover:shadow-md"
@@ -67,17 +82,6 @@ const Layout = ({ children, title = 'Next.js app' }: Props) => {
                 onClick={() => signOut()}
               >
                 Sign out
-              </button>
-              <button
-                className="flex items-center px-4 py-2 bg-gray-800 text-white font-bold rounded-md dark:bg-white dark:text-gray-800 drop-shadow-sm"
-                onClick={switchTheme}
-              >
-                Switch theme
-                <div
-                  className={`h-4 w-4 ml-2 ${
-                    theme === 'dark' ? 'bg-gray-800' : 'bg-white'
-                  }`}
-                ></div>
               </button>
             </span>
           </nav>
