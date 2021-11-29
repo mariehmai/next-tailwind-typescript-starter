@@ -31,18 +31,16 @@ const Home = () => {
   }
 
   return (
-    <Layout>
-      <div className="p-4">
-        <span>Not signed in</span>
-        <button
-          className="ml-2 px-4 py-2 rounded border-gray-800 border-2 hover:shadow-md"
-          type="button"
-          onClick={() => signIn()}
-        >
-          Sign in
-        </button>
-      </div>
-    </Layout>
+    <div className="p-4">
+      <span>Not signed in</span>
+      <button
+        className="ml-2 px-4 py-2 rounded border-gray-800 border-2 hover:shadow-md"
+        type="button"
+        onClick={() => signIn()}
+      >
+        Sign in
+      </button>
+    </div>
   );
 };
 
