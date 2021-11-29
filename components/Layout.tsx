@@ -2,6 +2,7 @@ import React, { ReactNode, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import { useTheme } from 'next-themes';
+import { useSession, signIn, signOut } from 'next-auth/react';
 
 type Props = {
   children?: ReactNode;
@@ -11,6 +12,7 @@ type Props = {
 const Layout = ({ children, title = 'Next.js app' }: Props) => {
   const [isMounted, setIsMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     setIsMounted(true);
@@ -22,6 +24,25 @@ const Layout = ({ children, title = 'Next.js app' }: Props) => {
     }
   };
 
+  if (status === 'loading') {
+    return <h1>Loading...</h1>;
+  }
+
+  if (!session) {
+    return (
+      <div className="p-4">
+        <span>Not signed in</span>
+        <button
+          className="ml-2 px-4 py-2 rounded border-gray-800 border-2 hover:shadow-md"
+          type="button"
+          onClick={() => signIn()}
+        >
+          Sign in
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="h-full flex flex-col justify-between">
       <Head>
@@ -32,21 +53,21 @@ const Layout = ({ children, title = 'Next.js app' }: Props) => {
       </Head>
       <div>
         <header className="flex flex-col m-4">
-          <nav className="flex flex-row justify-between items-baseline">
+          <nav className="flex flex-col md:flex-row justify-between items-baseline">
             <span>
               <Link href="/">
                 <a className="hover:opacity-80">Age Guesser</a>
-              </Link>{' '}
-              |{' '}
-              <Link href="/users">
-                <a className="hover:opacity-80">Users List</a>
-              </Link>{' '}
-              |{' '}
-              <a className="hover:opacity-80" href="/api/users">
-                Users API
-              </a>
+              </Link>
             </span>
-            <span className="flex justify-end ">
+            <span className="flex flex-col md:flex-row justify-end md:items-center">
+              <span>Signed in as {session.user?.name}</span>
+              <button
+                className="md:mx-2 px-4 py-2 rounded-md border-gray-800 border-2 hover:shadow-md"
+                type="button"
+                onClick={() => signOut()}
+              >
+                Sign out
+              </button>
               <button
                 className="flex items-center px-4 py-2 bg-gray-800 text-white font-bold rounded-md dark:bg-white dark:text-gray-800 drop-shadow-sm"
                 onClick={switchTheme}
