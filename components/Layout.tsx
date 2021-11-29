@@ -77,7 +77,7 @@ const Layout = ({ children, title = 'Next.js app' }: Props) => {
               </Switch>
               <span>Signed in as {session.user?.name}</span>
               <button
-                className="md:mx-2 px-4 py-2 rounded-md border-gray-800 border-2 hover:shadow-md"
+                className="md:mx-2 px-4 py-2 rounded-md border-gray-800 border-2 hover:shadow-md dark:border-white hover:opacity-80"
                 type="button"
                 onClick={() => signOut()}
               >
