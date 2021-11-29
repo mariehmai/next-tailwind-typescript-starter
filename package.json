@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next",
+    "dev": "env-cmd -f .env.local & next",
     "build": "next build",
     "start": "next start",
     "type-check": "tsc",
