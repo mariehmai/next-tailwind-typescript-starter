@@ -2,7 +2,7 @@ import React, { ReactNode, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import { useTheme } from 'next-themes';
-import { useSession, signIn, signOut } from 'next-auth/react';
+// import { useSession, signIn, signOut } from 'next-auth/react';
 import { Switch } from '@headlessui/react';
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
 const Layout = ({ children, title = 'Next.js app' }: Props) => {
   const [isMounted, setIsMounted] = useState(false);
   const { theme, setTheme } = useTheme();
-  const { data: session, status } = useSession();
+  // const { data: session, status } = useSession();
 
   useEffect(() => {
     setIsMounted(true);
@@ -25,24 +25,24 @@ const Layout = ({ children, title = 'Next.js app' }: Props) => {
     }
   };
 
-  if (status === 'loading') {
-    return <h1>Loading...</h1>;
-  }
+  // if (status === 'loading') {
+  //   return <h1>Loading...</h1>;
+  // }
 
-  if (!session) {
-    return (
-      <div className="p-4">
-        <span>Not signed in</span>
-        <button
-          className="ml-2 px-4 py-2 rounded border-gray-800 border-2 hover:shadow-md"
-          type="button"
-          onClick={() => signIn()}
-        >
-          Sign in
-        </button>
-      </div>
-    );
-  }
+  // if (!session) {
+  //   return (
+  //     <div className="p-4">
+  //       <span>Not signed in</span>
+  //       <button
+  //         className="ml-2 px-4 py-2 rounded border-gray-800 border-2 hover:shadow-md"
+  //         type="button"
+  //         onClick={() => signIn()}
+  //       >
+  //         Sign in
+  //       </button>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="h-full flex flex-col justify-between">
@@ -75,14 +75,14 @@ const Layout = ({ children, title = 'Next.js app' }: Props) => {
                   } inline-block w-4 h-4 transform bg-white rounded-full`}
                 />
               </Switch>
-              <span>Signed in as {session.user?.name}</span>
+              {/* <span>Signed in as {session.user?.name}</span>
               <button
                 className="md:mx-2 px-4 py-2 rounded-md border-gray-800 border-2 hover:shadow-md dark:border-white hover:opacity-80"
                 type="button"
                 onClick={() => signOut()}
               >
                 Sign out
-              </button>
+              </button> */}
             </span>
           </nav>
         </header>
