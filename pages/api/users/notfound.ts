@@ -2,9 +2,11 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { withSentry } from '@sentry/nextjs';
 
 const handler = (_req: NextApiRequest, res: NextApiResponse) => {
-  res.status(400).json({ statusCode: 400, message: 'Hit /users/notfound' });
-
-  throw new Error('/users/notfound error!!');
+  try {
+    throw new Error('Intentional /users/notfound error!!');
+  } catch (err) {
+    res.status(500).json({ statusCode: 500, message: err.message });
+  }
 };
 
 export default withSentry(handler);
