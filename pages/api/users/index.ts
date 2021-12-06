@@ -4,8 +4,6 @@ import { withSentry } from '@sentry/nextjs';
 import { sampleUserData } from '../../../utils/sample-data';
 
 const handler = (_req: NextApiRequest, res: NextApiResponse) => {
-  console.log('Calling /users endpoints');
-
   try {
     if (!Array.isArray(sampleUserData)) {
       throw new Error('Cannot find user data');
