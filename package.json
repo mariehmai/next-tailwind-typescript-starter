@@ -9,8 +9,13 @@
     "testwc": "jest --watch --coverage"
   },
   "dependencies": {
+    "@grpc/grpc-js": "^1.4.4",
     "@headlessui/react": "^1.4.2",
     "@next-auth/prisma-adapter": "^0.5.2-next.19",
+    "@opentelemetry/api": "^1.0.3",
+    "@opentelemetry/auto-instrumentations-node": "^0.27.0",
+    "@opentelemetry/exporter-trace-otlp-grpc": "^0.27.0",
+    "@opentelemetry/sdk-node": "^0.27.0",
     "@prisma/client": "^3.5.0",
     "@sentry/nextjs": "^6.15.0",
     "add": "^2.0.6",
