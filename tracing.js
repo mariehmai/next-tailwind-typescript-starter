@@ -14,10 +14,10 @@ const {
 } = require('@opentelemetry/exporter-trace-otlp-grpc');
 
 const metadata = new Metadata();
-metadata.set('x-honeycomb-team', process.env.HONEYCOMB_API_KEY);
-metadata.set('x-honeycomb-dataset', 'eager-eagle');
+metadata.set('x-honeycomb-team', process.env.HNY_API_KEY);
+metadata.set('x-honeycomb-dataset', process.env.HNY_DATASET);
 const traceExporter = new OTLPTraceExporter({
-  url: 'grpc://api.honeycomb.io:443/',
+  url: process.env.HNY_TRACE_URL,
   credentials: credentials.createSsl(),
   metadata
 });
@@ -42,6 +42,3 @@ process.on('SIGTERM', () => {
     .catch((error) => console.log('Error terminating tracing', error))
     .finally(() => process.exit(0));
 });
-
-// TODO: check why this is in the example from the doc
-// throw new Error();
