@@ -3,7 +3,6 @@
 // https://nextjs.org/docs/api-reference/next.config.js/introduction
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
-require('./tracing');
 const { withSentryConfig } = require('@sentry/nextjs');
 
 const moduleExports = {
