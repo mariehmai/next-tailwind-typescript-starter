@@ -32,16 +32,18 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
     const user = sampleUserData.find((user) => user.id == parseInt(userId));
 
     if (!user) {
+      span.setStatus({ code: SpanStatusCode.ERROR });
+      span.setAttribute('error_message', 'User not found');
       return res
-        .status(400)
-        .json({ statusCode: 400, message: 'User not found' });
+        .status(404)
+        .json({ statusCode: 404, message: 'User not found' });
     }
 
     return res.status(200).json(user);
   } catch (err) {
     span.setStatus({ code: SpanStatusCode.ERROR });
 
-    res.status(500).json({ statusCode: 500, message: err?.message });
+    res.status(500).json({ statusCode: 500, message: err.message });
   } finally {
     span.end();
   }
