@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { withSentry } from '@sentry/nextjs';
 import { SpanStatusCode } from '@opentelemetry/api';
 
 import { requestTracer } from '../../../functions-instrumentation';
@@ -26,4 +25,5 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default withSentry(handler);
+export default handler;
+// export default withSentry(handler);

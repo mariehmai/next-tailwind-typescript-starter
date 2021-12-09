@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { withSentry } from '@sentry/nextjs';
+// import { withSentry } from '@sentry/nextjs';
 import { SpanStatusCode } from '@opentelemetry/api';
 
 import { sampleUserData } from '../../../utils/sample-data';
@@ -49,4 +49,5 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default withSentry(handler);
+// export default withSentry(handler);
+export default handler;
