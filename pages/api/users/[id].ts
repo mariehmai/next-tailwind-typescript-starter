@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { withSentry } from '@sentry/nextjs';
+// import { withSentry } from '@sentry/nextjs';
 
 import { sampleUserData } from '../../../utils/sample-data';
 
@@ -17,7 +17,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
       throw new Error(`Id ${id} is not a valid id.`);
     }
 
-    const user = sampleUserData.find((user) => user.id == parseInt(userId));
+    const user = sampleUserData.find(user => user.id == parseInt(userId));
 
     if (!user) {
       return res
@@ -31,4 +31,5 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default withSentry(handler);
+// export default withSentry(handler);
+export default handler;

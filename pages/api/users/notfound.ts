@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { withSentry } from '@sentry/nextjs';
+// import { withSentry } from '@sentry/nextjs';
 
 const handler = (_req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -9,4 +9,5 @@ const handler = (_req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default withSentry(handler);
+// export default withSentry(handler);
+export default handler;
