@@ -1,3 +1,4 @@
+require('./tracing');
 // This file sets a custom webpack configuration to use your Next.js app
 // with Sentry.
 // https://nextjs.org/docs/api-reference/next.config.js/introduction
@@ -26,5 +27,5 @@
 // module.exports = withSentryConfig(moduleExports, sentryWebpackPluginOptions);
 
 module.exports = {
-  reactStrictMode: true
+  reactStrictMode: true,
 };

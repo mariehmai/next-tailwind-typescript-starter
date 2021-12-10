@@ -1,10 +1,12 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next",
+    "dev": "NODE_OPTIONS='--trace-warnings' next",
     "build": "next build",
     "start": "next start",
     "type-check": "tsc",
+    "migrate": "prisma migrate dev",
+    "seed": "prisma db seed",
     "testw": "jest --watch",
     "testwc": "jest --watch --coverage"
   },
@@ -29,6 +31,7 @@
     "react-dom": "^17.0.2",
     "react-query": "^3.33.4",
     "swr": "^1.0.1",
+    "ts-node": "^10.4.0",
     "yarn": "^1.22.17"
   },
   "devDependencies": {
@@ -44,5 +47,8 @@
     "react-test-renderer": "^17.0.2",
     "tailwindcss": "^2.2.19",
     "typescript": "4.5"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   }
 }
