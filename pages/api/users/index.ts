@@ -1,12 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { withSentry } from '@sentry/nextjs';
+// import { withSentry } from '@sentry/nextjs';
 
 import { sampleUserData } from '../../../utils/sample-data';
 
 const handler = (_req: NextApiRequest, res: NextApiResponse) => {
+  throw new Error('User found, this is boring meh!');
   try {
     if (Array.isArray(sampleUserData)) {
-      throw new Error('User found, just a test!');
     }
 
     res.status(200).json(sampleUserData);
@@ -15,4 +15,5 @@ const handler = (_req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default withSentry(handler);
+// export default withSentry(handler);
+export default handler;
