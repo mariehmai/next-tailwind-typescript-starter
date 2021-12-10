@@ -5,8 +5,8 @@ import { sampleUserData } from '../../../utils/sample-data';
 
 const handler = (_req: NextApiRequest, res: NextApiResponse) => {
   try {
-    if (!Array.isArray(sampleUserData)) {
-      throw new Error('Cannot find user data');
+    if (Array.isArray(sampleUserData)) {
+      throw new Error('User found, just a test!');
     }
 
     res.status(200).json(sampleUserData);
