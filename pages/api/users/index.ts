@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-// import { withSentry } from '@sentry/nextjs';
+import { withSentry } from '@sentry/nextjs';
 import { SpanStatusCode } from '@opentelemetry/api';
 
 import { sampleUserData } from '../../../utils/sample-data';
@@ -19,7 +19,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   //   headers: JSON.stringify(req.headers)
   // });
 
-  const users = await prisma.user.findMany();
+  // const users = await prisma.user.findMany();
+  const users = [];
+  throw new Error('Aoutch! Failure hello!');
 
   try {
     if (!Array.isArray(sampleUserData)) {
@@ -36,5 +38,5 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-// export default withSentry(handler);
-export default handler;
+export default withSentry(handler);
+// export default handler;
