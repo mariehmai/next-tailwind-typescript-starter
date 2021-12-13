@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-// import { withSentry } from '@sentry/nextjs';
+import { withSentry } from '@sentry/nextjs';
 import { SpanStatusCode } from '@opentelemetry/api';
 
 import { sampleUserData } from '../../../utils/sample-data';
@@ -29,7 +29,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
       throw new Error(`Id ${id} is not a valid id.`);
     }
 
-    const user = sampleUserData.find(user => user.id == parseInt(userId));
+    const user = sampleUserData.find((user) => user.id == parseInt(userId));
 
     if (!user) {
       // span.setStatus({ code: SpanStatusCode.ERROR });
@@ -49,5 +49,5 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-// export default withSentry(handler);
-export default handler;
+export default withSentry(handler);
+// export default handler;
